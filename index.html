@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/receipt-icon.png" type="image/png">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/line-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pdf.css">
+    <title>Faktury online</title>
+</head>
+
+<body>
+    <!-- Template -->
+    <div class="document">
+        <div class="document__top">
+            <div class="document__info">
+                <div class="document__firm_from">
+                    <div class="document__info_string">
+                        <h3>Nazwa firmy:</h3>
+                        <span class="firm-name info_firm-name">Jan Kowalski</span>
+                    </div>
+                    <div class="document__info_string">
+                        <h3>Imię i nazwisko:</h3>
+                        <span class="name info_name">Jan Kowalski</span>
+                    </div>
+                    <div class="document__info_string">
+                        <h3>Adres:</h3>
+                        <span class="address info_address">Jagelonska 22/10</span>
+                    </div>
+                </div>
+                <div class="document_firm_credentials">
+                    <div class="document__info_string">
+                        <h3>Nr rachunku:</h3>
+                        <span class="bank-account info_bank-account">00 0000 0000 0000 0000 0000 0000</span>
+                    </div>
+                    <div class="document__info_string">
+                        <h3>NIP:</h3>
+                        <span class="nip info_nip">0000000000</span>
+                    </div>
+                    <div class="document__info_string">
+                        <h3>REGON:</h3>
+                        <span class="regon info_regon">000000000</span>
+                    </div>
+                </div>
+                <div class="document__firm_to">
+                    <div class="document__info_string">Konekta Services B.V.</div>
+                    <div class="document__info_string">Ambachtsweg 1</div>
+                    <div class="document__info_string">3161GL Rhoon</div>
+                </div>
+                <div class="document__fakture_number">
+                    <div class="document__info_string">
+                        <h3>Numer faktury:</h3>
+                        <span class="number-fakture">1/2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="document__name">
+                <h1 class="name title_name">Jan Kowalski</h1>
+            </div>
+        </div>
+        <div class="document__tables">
+            <div class="dcoment__table_dates">
+                <table class="dates">
+                    <tr>
+                        <td class="gray-bg">Data wystawienia faktury</td>
+                        <td class="check-date black-bg">01.01.2000</td>
+                    </tr>
+                    <tr>
+                        <td class="black-bg">Data terminu płatności</td>
+                        <td class="pay-date gray-bg">01.01.2000</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="document__table_main">
+                <table class="main">
+                    <tr class="main-row">
+                        <th class="main-cell black-bg">Ilość godzin</th>
+                        <th class="main-cell black-bg">Opis</th>
+                        <th class="main-cell black-bg">Taryfa</th>
+                        <th class="main-cell black-bg">Łączna suma:</th>
+                    </tr>
+                    <tr class="main-row">
+                        <td class="main-cell hours">40</td>
+                        <td class="main-cell week">usługi spawalnicze w tyg 45</td>
+                        <td class="main-cell tarif">31</td>
+                        <td class="main-cell brutto">1240</td>
+                    </tr>
+                    <tr class="main-row">
+                        
+                    </tr>
+                    <tr class="main-row">
+                        
+                    </tr>
+                    <tr class="main-row additional">
+                        
+                    </tr>
+                    <tr class="main-row">
+                        
+                    </tr>
+                </table>
+            </div>
+            <div class="document__table_summary">
+                <table class="summary">
+                    <tr class="summary-row">
+                        <td class="black-bg">Łącznie do wypłaty:</td>
+                        <td class="document_netto">840</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="summary_subtext">Odwrotne obciążenie</div>
+        </div>
+        <div class="document__bottom">
+            <div class="document__bottom_string">Platnosc w ciagu 14 dni</div>
+            <div class="document__bottom_string">Adres mailowy do przesylania faktur:</div>
+            <div class="document__bottom_string">invoice@konektaservices.nl</div>
+        </div>
+    </div>
+
+    <!-- Main window -->
+    <main class="main__window">
+        <nav class="main__nav">
+            <button class="main__settings"><i class="las la-cog"></i></button>
+        </nav>
+        <div class="main__header">
+            <h2 class="name main__name">Lorem, ipsum.</h2>
+        </div>
+        <form class="main__form">
+            <div class="main__form_input">
+                <label for="fakture_number">Номер фактуры</label>
+                <input type='text' name="fakture_number" id="fakture_number" required>
+            </div>
+            <div class="main__form_input">
+                <label for="week_number">Номер недели</label>
+                <input type='number' name="week_number" id="week_number" required>
+            </div>
+            <div class="main__form_input">
+                <label for="hours_count">Количество часов</label>
+                <input type='number' name="hours_count" id="hours_count" required>
+            </div>
+            <div class="main__form_checkbox">
+                <label for="apartament_rent">Аренда квартиры</label>
+                <input type="checkbox" name="apartament_rent" id="apartament_rent">
+            </div>
+            <div class="main__form_checkbox">
+                <label for="car_rent">Аренда авто</label>
+                <input type="checkbox" name="car_rent" id="car_rent">
+            </div>
+            <input type="button" class="save-pdf" value="Сохранить фактуру">
+        </form>
+    </main>
+
+    <!-- Profile window -->
+    <section class="settings">
+        <nav class="settings__nav">
+            <button class="return__button"><i class="las la-undo"></i></button>
+        </nav>
+        <h1 class="settings__header">Настройки</h1>
+        <form class="settings_form">
+            <div class="settings__form_input">
+                <label for="firm-name">Название фирмы</label>
+                <input type='text' name="firm-name" id="firm-name" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="full-name">Имя Фамилия</label>
+                <input type='text' name="full-name" id="full-name" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="address-field">Адрес</label>
+                <input type='text' name="address-field" id="address-field" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="bank-account">Банковский счёт</label>
+                <input type='text' name="bank-account" id="bank-account" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="nip-field">NIP</label>
+                <input type='number' name="nip-field" id="nip-field" required minlength="10" maxlength="10">
+            </div>
+            <div class="settings__form_input">
+                <label for="regon-field">REGON</label>
+                <input type='number' name="regon-field" id="regon-field" required minlength="9" maxlength="9">
+            </div>
+            <div class="settings__form_input">
+                <label for="tarif-field">Ставка за час, €</label>
+                <input type='number' name="tarif-field" id="tarif-field" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="house-field">Цена аренды квартиры, €</label>
+                <input type='number' name="house-field" id="house-field" required >
+            </div>
+            <div class="settings__form_input">
+                <label for="car-field">Цена аренды авто, €</label>
+                <input type='number' name="car-field" id="car-field" required >
+            </div>
+            <input type="button" class="save-info" value="Сохранить данные">
+        </form>
+    </section>
+    
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/jspdf.umd.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+:root {
+    --main-bg: #222831;
+    --main-text: #ffffff;
+    --field-bg: #393e4683;
+    --button-bg: #2f7ad6;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto-Regular.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto-Bold.ttf);
+    font-style: normal;
+    font-weight: 700;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+/* Main window */
+
+.main__window,
+.settings {
+    text-align: center;
+    background-color: var(--main-bg);
+    color: var(--main-text);
+    font-family: Roboto;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+.main__nav,
+.settings__nav {
+    height: 70px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.main__settings,
+.return__button {
+    background-color: transparent;
+    color: var(--main-text);
+    border: none;
+
+}
+
+.main__settings>i,
+.return__button>i {
+    font-size: 50px;
+}
+
+.main__form,
+.settings_form {
+    margin: 20px auto;
+    width: 90%;
+}
+
+.main__form_input,
+.settings__form_input {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__form_input>input,
+.settings__form_input>input {
+    margin: 10px 0;
+    padding: 0 15px;
+    background-color: var(--field-bg);
+    color: var(--main-text);
+    border: none;
+    border-radius: 12px;
+    height: 30px;
+}
+
+.main__form_input>input[type=number],
+.settings__form_input>input[type=number] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.main__form_checkbox {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.save-pdf,
+.save-info {
+    width: 100%;
+    height: 40px;
+    color: var(--main-text);
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 12px;
+    margin-top: 20vh;
+}
+
+/* SwAl */
+.swal2-modal {
+    background-color: var(--main-bg);
+}
+
+.swal2-html-container {
+    color: var(--main-text);
+    font-family: Roboto;
+}
+
+.swal2-confirm.swal2-styled {
+    background-color: var(--button-bg);
+}
