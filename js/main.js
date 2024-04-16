@@ -201,7 +201,10 @@ createPDFButton.onclick = function () {
         document.querySelector(".car").innerHTML = ''
         document.querySelector(".house").innerHTML = ''
     } else {
-        alert("not OK")
+        Swal.fire({
+            text: "Нужно заполнить все поля",
+            confirmButtonColor: "#2f7ad6",
+        })
     }
 }
 
@@ -265,9 +268,11 @@ saveSettings.onclick = function () {
         carPrice: carField.value,
     }
     localStorage.setItem('fakturaData', JSON.stringify(myData))
-    
+
     Swal.fire({
         text: "Данные успешно сохранены",
-        icon: "success"
+        icon: "success",
+        confirmButtonColor: "#2f7ad6",
+        preConfirm: () => location.reload(),
     })
 }
