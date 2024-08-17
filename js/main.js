@@ -10,6 +10,17 @@ settings.hidden = true
 
 let year = new Date().getFullYear()
 
+let recepients = [
+    {
+        firmName: "Konekta Services B.V.",
+        address: "Ambachtsweg 1, 3161GL Rhoon"
+    },
+    {
+        firmName: "Roga i kopyta",
+        address: "Ambachtsweg 1, 3161GL Rhoon"
+    }
+]
+
 let myData = {
     firmName: "Albatros",
     myName: "Vasya Vakulenko",
@@ -20,8 +31,11 @@ let myData = {
     tarif: 32,
     apartamentPrice: 160,
     carPrice: 200,
+    recepientName: "",
+    recepientAddress: "",
 }
 myData = localStorage.getItem('fakturaData') ? JSON.parse(localStorage.fakturaData) : myData
+recepients = localStorage.getItem('fakturaDataRecepients') ? JSON.parse(localStorage.fakturaDataRecepients) : recepients
 
 // Template constants
 let title = pdfDoc.querySelector(".title_name")
@@ -49,6 +63,10 @@ workTarif.textContent = `€ ${myData.tarif}`
 let brutto = pdfDoc.querySelector(".brutto")
 
 // Template variables
+let firmRecipient = pdfDoc.querySelector("#firm_recepient")
+firmRecipient.textContent = myData.recepientName
+let firmRecipientAddress = pdfDoc.querySelector("#firm_address")
+firmRecipientAddress.textContent = myData.recepientAddress
 let templateHours = pdfDoc.querySelector(".hours")
 let templateFaktureNum = pdfDoc.querySelector(".number-fakture")
 let templateWeekNum = pdfDoc.querySelector(".week")
@@ -169,7 +187,6 @@ function printPDF() {
     doc.addFileToVFS('calibri.ttf', calibri)
     doc.addFont('calibri.ttf', 'calibri', 'normal')
     doc.setFont('calibri')
-    console.log(doc.getFont())
 
     // Source HTMLElement or a string containing HTML.
     let elementHTML = document.createElement('div');
@@ -180,7 +197,7 @@ function printPDF() {
     doc.html(elementHTML, {
         callback: function (doc) {
             // Save the PDF
-            doc.save('sample-document.pdf');
+            doc.save(`tydzen ${templateWeekNum.textContent.split(" ").slice(-1)} factura Konekta Services_${year} ${myData.myName}`);
         },
         x: 0,
         y: 0,
@@ -241,6 +258,30 @@ let houseField = document.querySelector("#house-field")
 houseField.value = myData.apartamentPrice
 let carField = document.querySelector("#car-field")
 carField.value = myData.carPrice
+let recepientsField = document.querySelector("#recepients-field")
+for (let firm of recepients) {
+    option = document.createElement("option")
+    option.value = firm.firmName
+    option.innerHTML = firm.firmName
+    if (option.innerHTML == myData.recepientName) {
+        option.selected = true
+    }
+    recepientsField.appendChild(option)
+}
+recepientsField.onchange = (e) => {
+    for (let i of recepients) {
+        if (i.firmName == e.target.value) {
+            myData.recepientName = i.firmName
+            myData.recepientAddress = i.address
+            console.log(myData.recepientName)
+        }
+    }
+}
+let addPartner = document.querySelector("#partner")
+addPartner.onclick = () => {
+    settings.hidden = true
+    document.querySelector(".partner").hidden = false
+}
 
 
 bankAccountField.oninput = function () {
@@ -266,6 +307,8 @@ saveSettings.onclick = function () {
         tarif: tarifField.value,
         apartamentPrice: houseField.value,
         carPrice: carField.value,
+        recepientName: myData.recepientName,
+        recepientAddress: myData.recepientAddress
     }
     localStorage.setItem('fakturaData', JSON.stringify(myData))
 
@@ -275,4 +318,27 @@ saveSettings.onclick = function () {
         confirmButtonColor: "#2f7ad6",
         preConfirm: () => location.reload(),
     })
+}
+
+
+// Add recepient
+let recepientWindow = document.querySelector(".partner")
+let recepientReturnButton = recepientWindow.querySelector(".return__button_recepient")
+recepientReturnButton.onclick = () => {
+    recepientWindow.hidden = true
+    settings.hidden = false
+}
+let recepientNameInput = recepientWindow.querySelector("#recepient_firm-name")
+let recepientAddressInput = recepientWindow.querySelector("#recepient_firm-address")
+let saveRecepient = recepientWindow.querySelector(".save-partner")
+saveRecepient.onclick = () => {
+    if (recepientNameInput.value != "" & recepientAddressInput.value != "") {
+        recepients.push({
+            firmName: recepientNameInput.value,
+            address: recepientAddressInput.value
+        })
+        localStorage.setItem("fakturaDataRecepients", JSON.stringify(recepients))
+        recepientWindow.hidden = true
+        settings.hidden = false
+    }
 }

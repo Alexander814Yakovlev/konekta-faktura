@@ -40,7 +40,8 @@ p {
 /* Main window */
 
 .main__window,
-.settings {
+.settings,
+.partner {
     text-align: center;
     background-color: var(--main-bg);
     color: var(--main-text);
@@ -58,7 +59,8 @@ p {
 }
 
 .main__settings,
-.return__button {
+.return__button,
+.return__button_recepient {
     background-color: transparent;
     color: var(--main-text);
     border: none;
@@ -66,8 +68,10 @@ p {
 }
 
 .main__settings>i,
-.return__button>i {
+.return__button>i,
+.return__button_recepient>i {
     font-size: 50px;
+    cursor: pointer;
 }
 
 .main__form,
@@ -84,7 +88,8 @@ p {
 }
 
 .main__form_input>input,
-.settings__form_input>input {
+.settings__form_input>input,
+.settings__form_input>select {
     margin: 10px 0;
     padding: 0 15px;
     background-color: var(--field-bg);
@@ -107,8 +112,23 @@ p {
     justify-content: flex-end;
 }
 
+.main__form_checkbox>label,
+.main__form_checkbox>input {
+    cursor: pointer;
+}
+
+#partner {
+    height: 40px;
+    color: var(--main-text);
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
 .save-pdf,
-.save-info {
+.save-info,
+.save-partner {
     width: 100%;
     height: 40px;
     color: var(--main-text);
@@ -116,6 +136,7 @@ p {
     border: none;
     border-radius: 12px;
     margin-top: 20vh;
+    cursor: pointer;
 }
 
 /* SwAl */

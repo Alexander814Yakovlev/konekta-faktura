@@ -46,9 +46,8 @@
                     </div>
                 </div>
                 <div class="document__firm_to">
-                    <div class="document__info_string">Konekta Services B.V.</div>
-                    <div class="document__info_string">Ambachtsweg 1</div>
-                    <div class="document__info_string">3161GL Rhoon</div>
+                    <div class="document__info_string " id="firm_recepient">Konekta Services B.V.</div>
+                    <div class="document__info_string " id="firm_address">Ambachtsweg 1, 3161GL Rhoon</div>
                 </div>
                 <div class="document__fakture_number">
                     <div class="document__info_string">
@@ -89,16 +88,16 @@
                         <td class="main-cell brutto">1240</td>
                     </tr>
                     <tr class="main-row">
-                        
+
                     </tr>
                     <tr class="main-row">
-                        
+
                     </tr>
                     <tr class="main-row additional">
-                        
+
                     </tr>
                     <tr class="main-row">
-                        
+
                     </tr>
                 </table>
             </div>
@@ -189,16 +188,40 @@
             </div>
             <div class="settings__form_input">
                 <label for="house-field">Цена аренды квартиры, €</label>
-                <input type='number' name="house-field" id="house-field" required >
+                <input type='number' name="house-field" id="house-field" required>
             </div>
             <div class="settings__form_input">
                 <label for="car-field">Цена аренды авто, €</label>
-                <input type='number' name="car-field" id="car-field" required >
+                <input type='number' name="car-field" id="car-field" required>
             </div>
+            <div class="settings__form_input">
+                <label for="recepients-field">Фирма-партнер</label>
+                <select name="recepients-field" id="recepients-field"></select>
+            </div>
+            <input type="button" class="settings__form-input" id="partner" value="Добавить партнера">
             <input type="button" class="save-info" value="Сохранить данные">
         </form>
     </section>
-    
+
+    <!-- Add Partner -->
+    <section class="partner" hidden>
+        <nav class="settings__nav">
+            <button class="return__button_recepient"><i class="las la-undo"></i></button>
+        </nav>
+        <h1 class="settings__header">Добавить партнера</h1>
+        <form class="settings_form">
+            <div class="settings__form_input">
+                <label for="recepient_firm-name">Название фирмы</label>
+                <input type='text' name="recepient_firm-name" id="recepient_firm-name" required>
+            </div>
+            <div class="settings__form_input">
+                <label for="recepient_firm-address"> Адрес</label>
+                <input type='text' name="recepient_firm-address" id="recepient_firm-address" required>
+            </div>
+            <input type="button" class="save-partner" value="Сохранить данные">
+        </form>
+    </section>
+
     <script src="js/sweetalert2.min.js"></script>
     <script src="js/html2canvas.min.js"></script>
     <script src="js/jspdf.umd.min.js"></script>
