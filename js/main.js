@@ -15,10 +15,6 @@ let recepients = [
         firmName: "Konekta Services B.V.",
         address: "Ambachtsweg 1, 3161GL Rhoon"
     },
-    {
-        firmName: "Roga i kopyta",
-        address: "Ambachtsweg 1, 3161GL Rhoon"
-    }
 ]
 
 let myData = {
