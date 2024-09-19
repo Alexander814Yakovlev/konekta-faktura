@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="document_firm_credentials">
-                    <div class="document__info_string">
+                    <div class="document__info_string payment-info">
                         <h3>Nr rachunku:</h3>
                         <span class="bank-account info_bank-account">00 0000 0000 0000 0000 0000 0000</span>
                     </div>
@@ -132,12 +132,26 @@
                 <input type='text' name="fakture_number" id="fakture_number" required>
             </div>
             <div class="main__form_input">
-                <label for="week_number">Номер недели</label>
+                <label for="week_number">
+                    Номер
+                    <select name="week_or_month" id="term_selector">
+                        <option value="недели">недели</option>
+                        <option value="месяца">месяца</option>
+                    </select>
+                </label>
                 <input type='number' name="week_number" id="week_number" required>
             </div>
             <div class="main__form_input">
                 <label for="hours_count">Количество часов</label>
                 <input type='number' name="hours_count" id="hours_count" required>
+            </div>
+            <div class="main__form_checkbox switch_payment">
+                <div class="switch_left">Нал</div>
+                <label class="switch">
+                    <input type="checkbox" id="payment-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div class="switch_right">Безнал</div>
             </div>
             <div class="main__form_checkbox">
                 <label for="apartament_rent">Аренда квартиры</label>

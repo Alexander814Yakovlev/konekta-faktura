@@ -9,6 +9,20 @@ pdfDoc.hidden = true
 settings.hidden = true
 
 let year = new Date().getFullYear()
+let monthesPL = {
+    1: "styczniu",
+    2: "lutym",
+    3: "marcu",
+    4: "kwietniu",
+    5: "maju",
+    6: "czerwcu",
+    7: "lipcu",
+    8: "sierpniu",
+    9: "wrzesniu",
+    10: "pazdzerniku",
+    11: "listopadzie",
+    12: "grudniu",
+}
 
 let recepients = [
     {
@@ -29,9 +43,11 @@ let myData = {
     carPrice: 200,
     recepientName: "",
     recepientAddress: "",
+    termType: "недели",
 }
 myData = localStorage.getItem('fakturaData') ? JSON.parse(localStorage.fakturaData) : myData
 recepients = localStorage.getItem('fakturaDataRecepients') ? JSON.parse(localStorage.fakturaDataRecepients) : recepients
+let termType = myData.termType;
 
 // Template constants
 let title = pdfDoc.querySelector(".title_name")
@@ -78,7 +94,14 @@ let form = document.querySelector('.main__form')
 let formHours = form.querySelector("#hours_count")
 let formFaktureNum = form.querySelector("#fakture_number")
 let formWeekNum = form.querySelector("#week_number")
+let formTermSelector = form.querySelector("#term_selector")
+for (let option of formTermSelector.querySelectorAll("option")) {
+    if (option.value === termType) {
+        option.selected = true;
+    }
+}
 
+let formPaymentMethod = form.querySelector("#payment-switch")
 let formApartametRent = form.querySelector("#apartament_rent")
 let formCarRent = form.querySelector("#car_rent")
 
@@ -96,9 +119,42 @@ formFaktureNum.oninput = function (e) {
 }
 
 formWeekNum.oninput = function (e) {
-    templateWeekNum.textContent = `usługi spawalnicze w tyg ${formWeekNum.value}`
+    console.log(formWeekNum.value);
+    console.log(termType);
+
+    if (termType === "месяца") {
+        console.log(formWeekNum.value);
+
+        if (+formWeekNum.value > 12) {
+            Swal.fire({
+                text: "Неправильный месяц",
+                confirmButtonColor: "#2f7ad6",
+            })
+            formWeekNum.value = ""
+        } else {
+            templateWeekNum.textContent = `usługi spawalnicze w ${monthesPL[formWeekNum.value]} ${year}`
+        }
+    } else {
+        templateWeekNum.textContent = `usługi spawalnicze w tyg ${formWeekNum.value}`
+    }
     checkDate.textContent = createDateString(parseInt(formWeekNum.value) + 1, year)
     payDate.textContent = createDateString(parseInt(formWeekNum.value) + 3, year)
+}
+
+formTermSelector.onchange = function (e) {
+    myData.termType = e.target.value;
+    termType = e.target.value;
+    localStorage.setItem('fakturaData', JSON.stringify(myData))
+}
+
+formPaymentMethod.onchange = function (e) {
+    value = e.target.checked
+    if (!value) {
+        pdfDoc.querySelector(".payment-info").innerHTML = "<h3>Sposob platnosci: Gotowka</h3>"
+    } else {
+        pdfDoc.querySelector(".payment-info").innerHTML = `<h3>Nr rachunku:</h3><span class="bank-account info_bank-account"></span>`
+        pdfDoc.querySelector(".bank-account").textContent = myData.bankAccount
+    }
 }
 
 formApartametRent.onchange = function (e) {
